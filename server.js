@@ -1,12 +1,12 @@
 const express = require('express')
-const { controladoresApi } = require('./controllers/controladoresApi.js')
-const { controladoresWeb } = require('./controllers/controladoresWeb.js')
+const { Router } = express.Router
+const { routerWeb } = require('./routers/routerWeb')
+const { routerApiProd } = require('./routers/routerApiProd')
 
 const app = express()
 
-app.get('/', controladoresWeb.root)
-app.get('/productos', controladoresApi.productos)
-app.get('/productoRandom', controladoresApi.productoRandom)
+app.use(routerWeb)
+app.use(routerApiProd)
 
 const PORT = 8080
 const server = app.listen(PORT, () => {
